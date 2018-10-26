@@ -1,4 +1,4 @@
-#include <WiiChuck.h>
+#include <WiiChuckLite.h>
 #if defined(ARDUINO_ARCH_ESP32)
 #include <ESP32Servo.h>
 #else
@@ -16,14 +16,9 @@ void setup() {
 	nunchuck1.begin();
 	if (nunchuck1.type == Unknown) {
 		/** If the device isn't auto-detected, set the type explicatly
-		 * 	
+		 *
 		 NUNCHUCK,
 		 WIICLASSIC,
-		 GuitarHeroController,
-		 GuitarHeroWorldTourDrums,
-		 DrumController,
-		 DrawsomeTablet,
-		 Turntable
 		 */
 		nunchuck1.type = NUNCHUCK;
 	}

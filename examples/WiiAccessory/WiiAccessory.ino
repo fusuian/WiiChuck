@@ -1,4 +1,4 @@
-#include <WiiChuck.h>
+#include <WiiChuckLite.h>
 
 Accessory nunchuck1;
 
@@ -9,11 +9,6 @@ void setup() {
 		/** If the device isn't auto-detected, set the type explicatly
 		 * 	NUNCHUCK,
 		 WIICLASSIC,
-		 GuitarHeroController,
-		 GuitarHeroWorldTourDrums,
-		 DrumController,
-		 DrawsomeTablet,
-		 Turntable
 		 */
 		nunchuck1.type = NUNCHUCK;
 	}
