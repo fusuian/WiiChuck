@@ -6,12 +6,7 @@
 //
 
 #include <Classic.h>
-#include <DJTable.h>
 #include <Nunchuck.h>
-
-#include <Drawsome.h>
-#include <Guitar.h>
-#include <Drums.h>
 
 #if defined(ARDUINO_ARCH_ESP32)
 //#include "ESP32Servo.h"
@@ -54,11 +49,8 @@ typedef enum _controllertype {
 } ControllerType;
 
 class Accessory: public Classic,
-		public DJTable,
-		public Nunchuck,
-		public Drawsome,
-		public Drums,
-		public Guitar {
+		public Nunchuck
+ {
 public:
 	Accessory();
 	void reset();

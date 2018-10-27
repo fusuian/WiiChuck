@@ -24,46 +24,6 @@ ControllerType Accessory::identifyController() {
 		if (_dataarray[5] == 0x01)
 			return WIICLASSIC; // Classic Controller
 
-	if (_dataarray[0] == 0x00)
-		if (_dataarray[1] == 0x00)
-			if (_dataarray[2] == 0xa4)
-				if (_dataarray[3] == 0x20)
-					if (_dataarray[4] == 0x01)
-						if (_dataarray[5] == 0x03)
-							return GuitarHeroController; // Guitar Hero Controller
-
-	if (_dataarray[0] == 0x01)
-		if (_dataarray[1] == 0x00)
-			if (_dataarray[2] == 0xa4)
-				if (_dataarray[3] == 0x20)
-					if (_dataarray[4] == 0x01)
-						if (_dataarray[5] == 0x03)
-							return GuitarHeroWorldTourDrums; // Guitar Hero World Tour Drums
-
-	if (_dataarray[0] == 0x03)
-		if (_dataarray[1] == 0x00)
-			if (_dataarray[2] == 0xa4)
-				if (_dataarray[3] == 0x20)
-					if (_dataarray[4] == 0x01)
-						if (_dataarray[5] == 0x03)
-							return Turntable; // Guitar Hero World Tour Drums
-
-	if (_dataarray[0] == 0x00)
-		if (_dataarray[1] == 0x00)
-			if (_dataarray[2] == 0xa4)
-				if (_dataarray[3] == 0x20)
-					if (_dataarray[4] == 0x01)
-						if (_dataarray[5] == 0x11)
-							return DrumController; // Taiko no Tatsujin TaTaCon (Drum controller)
-
-	if (_dataarray[0] == 0xFF)
-		if (_dataarray[1] == 0x00)
-			if (_dataarray[2] == 0xa4)
-				if (_dataarray[3] == 0x20)
-					if (_dataarray[4] == 0x00)
-						if (_dataarray[5] == 0x13)
-							return DrawsomeTablet; // Drawsome Tablet
-
 	return Unknown;
 }
 
@@ -270,9 +230,6 @@ void Accessory::begin() {
 
 	initBytes();
 	identifyController();
-	if (getControllerType() == DrawsomeTablet) {
-		initBytesDrawsome();
-	}
 	delay(100);
 	_burstRead();
 	delay(100);
@@ -468,21 +425,6 @@ void Accessory::printInputs(Stream& stream) {
 	case WIICLASSIC:
 		printInputsClassic(stream);
 		break;
-	case GuitarHeroController:
-		printInputsGuitar(stream);
-		break;
-	case GuitarHeroWorldTourDrums:
-		printInputsDrums(stream);
-		break;
-	case DrumController:
-		printInputsDrums(stream);
-		break;
-	case DrawsomeTablet:
-		printInputsDrawsome(stream);
-		break;
-	case Turntable:
-		printInputsDj(stream);
-		break;
 	case NUNCHUCK:
 		printInputsNunchuck(stream);
 		break;
@@ -497,21 +439,6 @@ uint8_t * Accessory::getValues() {
 	switch (getControllerType()) {
 	case WIICLASSIC:
 		getValuesClassic(values);
-		break;
-	case GuitarHeroController:
-		getValuesGuitar(values);
-		break;
-	case GuitarHeroWorldTourDrums:
-		getValuesDrums(values);
-		break;
-	case DrumController:
-		getValuesDrums(values);
-		break;
-	case DrawsomeTablet:
-		getValuesDrawsome(values);
-		break;
-	case Turntable:
-		getValuesDj(values);
 		break;
 	case NUNCHUCK:
 	default:
